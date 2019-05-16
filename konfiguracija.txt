@@ -1,0 +1,8 @@
+Populacija
+20
+Krizanje
+0.9
+Mutacija
+0.01
+Iteracije
+30
