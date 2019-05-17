@@ -2,6 +2,7 @@ package uui.ga.lab04;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Evolucija {
@@ -11,8 +12,10 @@ public class Evolucija {
 	private Populacija populacija = new Populacija();
 	private Krizanje funkcijaKrizanja = new Krizanje();
 	private Mutacija funkcijaMutacije = new Mutacija();
+	private PrintWriter out;
 	
-	public Evolucija() {
+	public Evolucija(PrintWriter out) {
+		this.out = out;
 		try {
 			Scanner in = new Scanner(new FileReader("./konfiguracija/konfiguracija.txt"));
 			while(!in.next().equals("Iteracije"));
@@ -33,7 +36,8 @@ public class Evolucija {
 		for(int i = 0; i < brojIteracija; i++) {
 			if(najboljaJedinka.dohvatiDobrotu() == 270.0) {
 				ispis(i+1);
-				System.out.println("Rjesenje pronadeno nakon " + (i+1) + " iteracija.");
+//				System.out.println("Rjesenje pronadeno nakon " + (i+1) + " iteracija.");
+				out.println("Rjesenje pronadeno nakon " + (i+1) + " iteracija.");
 				break;
 			}
 			selekcija();
@@ -69,13 +73,18 @@ public class Evolucija {
 	}
 	
 	private void ispis(int iteracija) {
-		System.out.println(iteracija + ". Iteracija");
-		System.out.println("Maksimalna dobrota = " + najboljaJedinka.dohvatiDobrotu());
-		System.out.println("Normirane vrijednosti:");
+//		System.out.println(iteracija + ". Iteracija");
+//		System.out.println("Maksimalna dobrota = " + najboljaJedinka.dohvatiDobrotu());
+//		System.out.println("Normirane vrijednosti:");
+		out.println(iteracija + ". Iteracija");
+		out.println("Maksimalna dobrota = " + najboljaJedinka.dohvatiDobrotu());
+		out.println("Normirane vrijednosti:");
 		for(int i = 0; i < populacija.dohvatiPopulaciju().size(); i++) {
-			System.out.println((i+1) + ". jedinka = " + populacija.dohvatiPopulaciju().get(i).dohvatiVjerojatnostPrezivljavanja());
+//			System.out.println((i+1) + ". jedinka = " + populacija.dohvatiPopulaciju().get(i).dohvatiVjerojatnostPrezivljavanja());
+			out.println((i+1) + ". jedinka = " + populacija.dohvatiPopulaciju().get(i).dohvatiVjerojatnostPrezivljavanja());
 		}
-		System.out.println("Prosjecna dobrota = " + populacija.dohvatiProsjecnuDobrotu());
+//		System.out.println("Prosjecna dobrota = " + populacija.dohvatiProsjecnuDobrotu());
+		out.println("Prosjecna dobrota = " + populacija.dohvatiProsjecnuDobrotu());
 	}
 
 }

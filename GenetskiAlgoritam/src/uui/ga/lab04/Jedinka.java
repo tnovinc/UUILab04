@@ -1,5 +1,6 @@
 package uui.ga.lab04;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Jedinka {
@@ -60,16 +61,21 @@ public class Jedinka {
 		this.vjerojatnostPrezivljavanja = vjerojatnostPrezivljavanja;
 	}
 	
-	public void ispisiGene() {
-		System.out.print("Binarno = ");
-		nizGena.forEach(g -> System.out.print(g.dohvatiVrijednost()));
-		System.out.print("; Dekadski = ");
+	public void ispisiGene(PrintWriter out) {
+//		System.out.print("Binarno = ");
+//		nizGena.forEach(g -> System.out.print(g.dohvatiVrijednost()));
+//		System.out.print("; Dekadski = ");
+		out.print("Binarno = ");
+		nizGena.forEach(g -> out.print(g.dohvatiVrijednost()));
+		out.print("; Dekadski = ");
 		int broj = 0;
 		for(int i = 0; i < nizGena.size(); i++) {
 			broj += nizGena.get(i).dohvatiVrijednost()*Math.pow(2, 9-i);
 		}
-		System.out.print(broj);
-		System.out.print("; Dobrota = " + dobrota);
+//		System.out.print(broj);
+//		System.out.print("; Dobrota = " + dobrota);
+		out.print(broj);
+		out.print("; Dobrota = " + dobrota);
 	}
 
 }
