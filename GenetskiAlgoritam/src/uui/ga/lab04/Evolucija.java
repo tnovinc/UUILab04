@@ -3,7 +3,6 @@ package uui.ga.lab04;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Evolucija {
