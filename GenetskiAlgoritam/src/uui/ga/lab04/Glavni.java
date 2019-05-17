@@ -9,7 +9,7 @@ public class Glavni {
 
 	public static void main(String args[]) {
 		try {
-			out = new PrintWriter(new FileWriter("./rezultat/rezultat.txt", true));
+			out = new PrintWriter(new FileWriter("./rezultat/rezultat.txt", false));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

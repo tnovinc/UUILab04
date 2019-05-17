@@ -3,6 +3,7 @@ package uui.ga.lab04;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Evolucija {
@@ -29,6 +30,7 @@ public class Evolucija {
 		pronadiNajboljuJedinku();
 		populacija.izracunajProsjecnuDobrotu();
 		populacija.izracunajVjerojatnostPrezivljavanja();
+		populacija.sortirajPopulaciju();
 	}
 	
 	public void evoluiraj() {
@@ -39,13 +41,15 @@ public class Evolucija {
 //				System.out.println("Rjesenje pronadeno nakon " + (i+1) + " iteracija.");
 				out.println("Rjesenje pronadeno nakon " + (i+1) + " iteracija.");
 				break;
-			}
+			}			
 			selekcija();
 			populacija = funkcijaKrizanja.krizaj(populacija);
 			populacija = funkcijaMutacije.mutiraj(populacija);
+			populacija.sortirajPopulaciju();
 			populacija.izracunajProsjecnuDobrotu();
 			populacija.izracunajVjerojatnostPrezivljavanja();
 			pronadiNajboljuJedinku();
+			populacija.smanjiPopulaciju();
 			ispis(i+1);
 		}		
 	}
@@ -81,7 +85,7 @@ public class Evolucija {
 		out.println("Normirane vrijednosti:");
 		for(int i = 0; i < populacija.dohvatiPopulaciju().size(); i++) {
 //			System.out.println((i+1) + ". jedinka = " + populacija.dohvatiPopulaciju().get(i).dohvatiVjerojatnostPrezivljavanja());
-			out.println((i+1) + ". jedinka = " + populacija.dohvatiPopulaciju().get(i).dohvatiVjerojatnostPrezivljavanja());
+			out.println((i+1) + ". jedinka = " + populacija.dohvatiPopulaciju().get(i).dohvatiVjerojatnostPrezivljavanja() + "; dobrota = " + populacija.dohvatiPopulaciju().get(i).dohvatiDobrotu());
 		}
 //		System.out.println("Prosjecna dobrota = " + populacija.dohvatiProsjecnuDobrotu());
 		out.println("Prosjecna dobrota = " + populacija.dohvatiProsjecnuDobrotu());

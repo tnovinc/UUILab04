@@ -3,6 +3,7 @@ package uui.ga.lab04;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Populacija {
@@ -53,6 +54,24 @@ public class Populacija {
 	
 	public double dohvatiProsjecnuDobrotu() {
 		return prosjecnaDobrota;
+	}
+	
+	public void sortirajPopulaciju() {
+		nizJedinki.sort(new Comparator<Jedinka>() {
+
+			@Override
+			public int compare(Jedinka j1, Jedinka j2) {
+				if(j1.dohvatiDobrotu() > j2.dohvatiDobrotu()) return -1;
+				else if(j1.dohvatiDobrotu() < j2.dohvatiDobrotu()) return 1;
+				else return 0;
+			}
+		});;
+	}
+	
+	public void smanjiPopulaciju() {
+		while(nizJedinki.size() > velicina) {
+			nizJedinki.remove(nizJedinki.size()-1);
+		}
 	}
 
 }
